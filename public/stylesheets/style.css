@@ -3,6 +3,26 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+h1, h2, h3, p {
+	font-family: 'Helvetica', arial, sans-serif;
+}
+
+h1 {
+	font-size: 180%
+}
+
+h2 {
+	font-size: 160%;
+}
+
+h3 {
+	font-size: 140%;
+}
+
+p { 
+	font-size: 120%;
+}
+
 a {
   color: #00B7FF;
 }
