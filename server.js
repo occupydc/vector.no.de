@@ -3,8 +3,7 @@
  * Module dependencies.
  */
 
-var express = require('express')
-  , routes = require('./routes');
+var express = require('express');
 
 var app = module.exports = express.createServer();
 
@@ -29,7 +28,35 @@ app.configure('production', function(){
 
 // Routes
 
-app.get('/', routes.index);
+app.get('/', function(req, res) {
+  res.render('index', {locals: {
+  	title: 'vector.no.de' 
+  }});
+});
+
+/***
+ * Occupations 
+ */
+
+// module export
+var occupations = require('./occupations'); 
+
+// index
+app.get('/occupations', function(req, res) {
+  res.render('occupations/index', {locals: {
+  	occupations: occupations.all,
+  	title: 'vector.no.de'
+  }});
+});
+
+// individual
+app.get('/occupations/:id', function(req, res) {
+  var occupation = occupations.find(req.params.id);
+  res.render('occupations/individual',{locals: {
+    occupation: occupation,
+    title: 'vector.no.de'
+  }});
+});
 
 app.listen(80);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
