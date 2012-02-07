@@ -31,7 +31,7 @@ module.exports.find = function(id) {
 module.exports.set = function(id, occupation) {
   id = parseInt(id, 10);
   occupation.id = id;
-  occupations[id -1] = occupation;
+  occupations[id-1] = occupation;
 }
 
 module.exports.new = function() {
