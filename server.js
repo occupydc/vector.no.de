@@ -10,6 +10,7 @@ var app = module.exports = express.createServer();
 // Configuration
 
 app.configure(function(){
+  app.use(express.logger());
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.bodyParser());
@@ -56,6 +57,22 @@ app.get('/occupations/:id', function(req, res) {
     occupation: occupation,
     title: 'vector.no.de'
   }});
+});
+
+// edit
+app.get('/occupations/:id/edit', function(req, res) {
+  var occupation = occupations.find(req.params.id);
+  res.render('occupations/edit',{locals: {
+  	occupation: occupation,
+  	title: 'vector.no.de'
+  }});
+});
+
+// put
+app.put('/occupations/:id', function(req, res) {
+  id = req.params.id;
+  occupations.set(id, req.body.occupation);
+  res.redirect('/occupations/'+id);
 });
 
 app.listen(80);

@@ -1,0 +1,4 @@
+h1='Editing ' + occupation.name
+form(action='/occupations/'+occupation.id, method='POST')
+  input(type='hidden', name='_method', value='PUT')
+  div!= partial('../partials/occupation_form', {occupation: occupation})
