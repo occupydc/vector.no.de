@@ -77,10 +77,6 @@ app.put('/occupations/:id', function(req, res) {
   res.redirect('/occupations/'+id);
 });
 
-/* 404 redirect here */
-app.get('*', function(req, res) {
-  res.send('404 - no such page');
-});
 
 app.listen(80);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
