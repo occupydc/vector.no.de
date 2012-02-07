@@ -42,7 +42,7 @@ app.get('/', function(req, res) {
 // module export
 var occupations = require('./occupations'); 
 
-// index
+// view index
 app.get('/occupations', function(req, res) {
   res.render('occupations/index', {locals: {
   	occupations: occupations.all,
@@ -50,7 +50,7 @@ app.get('/occupations', function(req, res) {
   }});
 });
 
-// individual
+// view individual
 app.get('/occupations/:id', function(req, res) {
   var occupation = occupations.find(req.params.id);
   res.render('occupations/individual',{locals: {
@@ -59,7 +59,7 @@ app.get('/occupations/:id', function(req, res) {
   }});
 });
 
-// edit
+// view edit
 app.get('/occupations/:id/edit', function(req, res) {
   var occupation = occupations.find(req.params.id);
   res.render('occupations/edit',{locals: {
@@ -68,11 +68,18 @@ app.get('/occupations/:id/edit', function(req, res) {
   }});
 });
 
-// put
+// post data
+
+// put data
 app.put('/occupations/:id', function(req, res) {
   id = req.params.id;
   occupations.set(id, req.body.occupation);
   res.redirect('/occupations/'+id);
+});
+
+/* 404 redirect here */
+app.get('*', function(req, res) {
+  res.send('404 - no such page');
 });
 
 app.listen(80);
